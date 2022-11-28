@@ -48,3 +48,18 @@ function init() {
     document.querySelector(".global-error").addEventListener('click', () => { 
     })
 }
+
+class PoggerError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "PoggerError";
+    }
+}
+
+try {
+    throw PoggerError("poggers!");
+} catch (err) {
+    console.log("error occurred");
+} finally {
+    console.log('poggers');
+}
