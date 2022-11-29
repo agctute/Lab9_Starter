@@ -47,16 +47,13 @@ function init() {
     })
 
     document.querySelector(".global-error").addEventListener('click', () => { 
-        console.error('error');
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            console.log("a global error as been triggered")
+            return false;
+        }
+        throw new PoggerError("POGGERS");
+        window.onerror = () => {}
     })
-}
-globalErrorHandler(); 
-
-globalErrorHandler = () => {
-    if(window.onerror) {
-        console.log("an error has been caught by the global error handler");
-        window.onerror = null;
-    }
 }
 
 class PoggerError extends Error {
