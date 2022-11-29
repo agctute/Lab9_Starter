@@ -45,8 +45,18 @@ function init() {
     document.querySelector(".trace").addEventListener('click', () => { 
      console.trace();
     })
+
     document.querySelector(".global-error").addEventListener('click', () => { 
+        console.error('error');
     })
+}
+globalErrorHandler(); 
+
+globalErrorHandler = () => {
+    if(window.onerror) {
+        console.log("an error has been caught by the global error handler");
+        window.onerror = null;
+    }
 }
 
 class PoggerError extends Error {
